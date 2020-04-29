@@ -5,7 +5,9 @@
 #include "write.hpp"
 
 namespace ES::file {
-    void write(const std::string &filename, const std::string &contents)
+    void write(
+            const std::string &filename,
+            const std::string &contents)
     {
         std::ofstream outfile(filename);
         outfile << contents;
