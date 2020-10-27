@@ -3,6 +3,9 @@
 //
 
 #include "write.hpp"
+#include <string>
+#include <fstream>
+
 
 namespace ES::file {
     void write(
