@@ -34,6 +34,22 @@ namespace ES::file {
         return lines;
     }
 
+    template <class Container>
+    void read_binary_container(const std::string &filename, Container &container)
+    {
+        auto sz = filesize(filename);
+        std::size_t value_sz = sizeof(typename Container::value_type);
+
+        container.resize(sz/value_sz);
+
+        std::ifstream infile(filename, std::ios::binary);
+        typename Container::value_type value;
+        for (int i = 0; i < container.size(); ++i) {
+            infile.read((char*) &value, value_sz);
+            container[i] = value;
+        }
+    }
+
     // this needs to be done in a more templated way.
     void read_binary(const std::string &filename, std::string &data) {
         auto file_size = filesize(filename);

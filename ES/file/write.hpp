@@ -17,6 +17,18 @@ namespace ES::file {
         outfile << contents;
     }
 
+    template <class Container>
+    void write_binary_container(
+            const std::string &filename,
+            const Container &container)
+    {
+        const long elt_size = sizeof(typename Container::value_type);
+        std::ofstream outfile(filename, std::ios::binary);
+        for (const auto &elt : container) {
+            outfile.write((char*)&elt, elt_size);
+        }
+    }
+
     void write_binary(
             const std::string &filename,
             const char *data,
