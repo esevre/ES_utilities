@@ -12,7 +12,6 @@
 
 #include "../../../ES/file/read.hpp"
 #include "../../../ES/file/write.hpp"
-#include "../../../ES/file/filesize.hpp"
 
 
 class ReadWriteSuite : public ::testing::Test {
@@ -28,6 +27,7 @@ TEST_F(ReadWriteSuite, empty_input)
     // todo: replace with real test later
     int x = 1;
     EXPECT_EQ(x, 1);
+
 }
 
 TEST_F(ReadWriteSuite, correct_write_size)
@@ -60,11 +60,12 @@ TEST_F(ReadWriteSuite, vector_files)
     ES::file::write_binary_container(filename_d, arr_d1);
     sz = ES::file::filesize(filename_d);
     EXPECT_EQ(sz, sizeof(double)*arr_d1.size()) << "double array wrong size";
+
 }
 
 TEST_F(ReadWriteSuite, binary_large_vector)
 {
-    const std::size_t size = 1'000'000;
+    const std::size_t size = 100'000;
     std::vector<double> vec(size);
     for (int i = 0; i < size; ++i) {
         vec[i] = i * 1.1;

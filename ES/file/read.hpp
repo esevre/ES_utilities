@@ -11,7 +11,8 @@
 #include "filesize.hpp"
 
 namespace ES::file {
-    std::string read(const std::string &filename) {
+    std::string read(const std::string &filename)
+    {
         std::string contents;
         contents.reserve(filesize(filename));
 
@@ -21,7 +22,8 @@ namespace ES::file {
         return contents;
     }
 
-    std::vector<std::string> read_lines(const std::string &filename) {
+    std::vector<std::string> read_lines(const std::string &filename)
+    {
         std::vector<std::string> lines;
         std::ifstream infile(filename);
         std::string line;
@@ -50,12 +52,6 @@ namespace ES::file {
         }
     }
 
-    // this needs to be done in a more templated way.
-    void read_binary(const std::string &filename, std::string &data) {
-        auto file_size = filesize(filename);
-        data.resize(file_size);
-        std::ifstream infile(filename, std::ios::binary);
-        infile.read(data.data(), file_size);
-    }
 }
+
 
